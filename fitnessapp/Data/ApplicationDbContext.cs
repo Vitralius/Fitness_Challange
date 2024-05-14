@@ -9,4 +9,11 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        var builder = WebApplication.CreateBuilder();
+        var connectionString = builder.Configuration.GetConnectionString ("DefaultConnection");
+        optionsBuilder.UseSqlServer(connectionString);
+    }
+
 }

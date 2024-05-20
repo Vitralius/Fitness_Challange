@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\doruk\\Desktop\\Ceng382_Project\\temp\\Fitness_Challange\\Fitness_Challange\\fitnessapp\\fitnessapp.csproj": {}
+    "C:\\Users\\user\\Desktop\\Lecture Stuff\\Ceng_382_Lab\\Fitness_Challange\\fitnessapp\\fitnessapp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\doruk\\Desktop\\Ceng382_Project\\temp\\Fitness_Challange\\Fitness_Challange\\fitnessapp\\fitnessapp.csproj": {
+    "C:\\Users\\user\\Desktop\\Lecture Stuff\\Ceng_382_Lab\\Fitness_Challange\\fitnessapp\\fitnessapp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\doruk\\Desktop\\Ceng382_Project\\temp\\Fitness_Challange\\Fitness_Challange\\fitnessapp\\fitnessapp.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\Lecture Stuff\\Ceng_382_Lab\\Fitness_Challange\\fitnessapp\\fitnessapp.csproj",
         "projectName": "fitnessapp",
-        "projectPath": "C:\\Users\\doruk\\Desktop\\Ceng382_Project\\temp\\Fitness_Challange\\Fitness_Challange\\fitnessapp\\fitnessapp.csproj",
-        "packagesPath": "C:\\Users\\doruk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\doruk\\Desktop\\Ceng382_Project\\temp\\Fitness_Challange\\Fitness_Challange\\fitnessapp\\obj\\",
+        "projectPath": "C:\\Users\\user\\Desktop\\Lecture Stuff\\Ceng_382_Lab\\Fitness_Challange\\fitnessapp\\fitnessapp.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\Lecture Stuff\\Ceng_382_Lab\\Fitness_Challange\\fitnessapp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\doruk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -101,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

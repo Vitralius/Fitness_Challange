@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace fitnessapp.Models;
 
-public partial class TblChallange
+public partial class Challenge
 {
-    public int? Id { get; set; }
+    public int ChallengeId { get; set; }
 
     public string? Title { get; set; }
 

@@ -34,6 +34,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Areas/Identity/Pages/Account/Manage/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -58,8 +70,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Pages/ChallangeList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhbGxhbmdlTGlzdC5jc2h0bWw=
+[C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Pages/AllChallengeList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxsQ2hhbGxlbmdlTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Pages/AverageRatingList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXZlcmFnZVJhdGluZ0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Pages/Error.cshtml]
@@ -70,8 +86,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Pages/MyChallengeList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlDaGFsbGVuZ2VMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Pages/ParticipatedChallengeList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGljaXBhdGVkQ2hhbGxlbmdlTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Pages/RateChallenge.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmF0ZUNoYWxsZW5nZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/user/Desktop/Lecture Stuff/Ceng_382_Lab/Fitness_Challange/fitnessapp/Pages/Shared/_LoginPartial.cshtml]

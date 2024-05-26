@@ -1,0 +1,107 @@
+﻿@page
+@model fitnessapp.Namespace.AllChallengeListModel
+@{
+    ViewData["Title"] = "Challange List";
+    var today = DateTime.Today;
+    var lastday = today.AddDays(7);
+    var todayString = today.ToString("yyyy-MM-dd");
+    var lastdayString = lastday.ToString("yyyy-MM-dd");
+}
+
+<h1>All Challange List</h1>
+
+<form asp-page="./AllChallengeList" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by Title:
+            <input type="text" name="searchString1" value="" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./AllChallengeList">Back to full List</a>
+        </p>
+    </div>
+    <div class="form-actions no-color">
+        <p>
+            Find by Category:  
+            <select name="searchString2" id="PizzaSize">
+                <option value="">--Select Category</option>
+                <option value="High">High priority</option>
+                <option value="Medium">Medium priority</option>
+                <option value="Low">Low priority</option>
+            </select> 
+            <input type="submit" value="Search" class="btn btn-primary" />|
+            <a asp-page="./AllChallengeList">Back to full List</a>
+        </p>
+    </div>
+    <div class="form-actions no-color">
+        <p>
+            Find by Status:  
+            <select name="searchString3" id="PizzaSize">
+                <option value="">--Select Status</option>
+                <option value="True">Canceled</option>
+                <option value="False">On Going</option>
+            </select> 
+            <input type="submit" value="Search" class="btn btn-primary" />|
+            <a asp-page="./AllChallengeList">Back to full List</a>
+        </p>
+    </div>
+    <div class="form-actions no-color">
+        <p>
+            Find by Date:
+            <input type="date" name="searchString4" value="" min="@todayString" max="@lastdayString"/>
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            
+            <a asp-page="./AllChallengeList">Back to full List</a>
+        </p>
+    </div>
+</form>
+
+ <table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">
+                <a asp-page="./AllChallengeList" asp-route-sortOrder="@Model.TitleSort">
+                @Html.DisplayNameFor(model => model.tblChallengeList[0].Title)
+                </a>
+            </th>
+            <th scope="col">Description</th>
+            <th scope="col">
+                <a asp-page="./AllChallengeList" asp-route-sortOrder="@Model.CategorySort">
+                @Html.DisplayNameFor(model => model.tblChallengeList[0].Category)
+                </a>
+            </th>
+            <th scope="col">
+                <a asp-page="./AllChallengeList" asp-route-sortOrder="@Model.DateSort">
+                @Html.DisplayNameFor(model => model.tblChallengeList[0].EndDate)
+                </a>
+            </th>
+            <th scope="col">
+                <a asp-page="./AllChallengeList" asp-route-sortOrder="@Model.IsDeletedSort">
+                @Html.DisplayNameFor(model => model.tblChallengeList[0].IsDeleted)
+                </a>
+            </th>
+            <th scope="col">Participate</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var challenge in Model.tblChallengeList)
+    {
+        <tr>
+            <td>@challenge.Title</td>
+            <td>@challenge.Description</td>
+            <td>@challenge.Category</td>
+            <td>@challenge.EndDate</td>
+            <td>@challenge.IsDeleted</td>
+            <td>
+                <form method="post" asp-page-handler="Participate" asp-route-id="@challenge.ChallengeId">
+                @if(challenge.IsDeleted == false)
+                {
+                    <button class="btn btn-primary"><i class="fa-solid fa-plus" title="Participate"></i></button>
+                }
+                </form>
+            </td>            
+        </tr>
+    }
+
+    </tbody>
+</table> 
+

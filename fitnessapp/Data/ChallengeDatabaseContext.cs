@@ -1,33 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using fitnessapp.Models;
 
-namespace fitnessapp.Models;
+namespace fitnessapp.Data;
 
-public partial class UserChallangeDatabaseContext : DbContext
+public partial class ChallengeDatabaseContext : DbContext
 {
-    public UserChallangeDatabaseContext()
+    public ChallengeDatabaseContext()
     {
     }
 
-    public UserChallangeDatabaseContext(DbContextOptions<UserChallangeDatabaseContext> options)
+    public ChallengeDatabaseContext(DbContextOptions<ChallengeDatabaseContext> options)
         : base(options)
     {
     }
 
-    public virtual DbSet<TblChallange> TblChallanges { get; set; }
+    public virtual DbSet<TblChallenge> TblChallenges { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=.\\SQLExpress; Database=UserChallangeDatabase; Trusted_Connection=True; TrustServerCertificate=True;");
-
+    {
+        var builder = WebApplication.CreateBuilder();
+        var connectionString = builder.Configuration.GetConnectionString ("SecondConnection");
+        optionsBuilder.UseSqlServer(connectionString);
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<TblChallange>(entity =>
+        modelBuilder.Entity<TblChallenge>(entity =>
         {
-            entity.ToTable("tbl_challange");
+            entity.HasKey(e => e.ChallengeId);
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.ToTable("tbl_challenge");
+
+            entity.Property(e => e.ChallengeId).HasColumnName("challengeId");
             entity.Property(e => e.Category)
                 .HasMaxLength(10)
                 .IsFixedLength()
@@ -40,13 +45,11 @@ public partial class UserChallangeDatabaseContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("endDate");
             entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
+            entity.Property(e => e.ParentId).HasColumnName("parentId");
             entity.Property(e => e.Title)
                 .HasMaxLength(50)
                 .IsFixedLength()
                 .HasColumnName("title");
-            entity.Property(e => e.UserId)
-                .HasMaxLength(450)
-                .HasColumnName("userId");
         });
 
         OnModelCreatingPartial(modelBuilder);

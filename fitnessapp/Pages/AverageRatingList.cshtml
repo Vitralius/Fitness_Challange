@@ -1,0 +1,55 @@
+@page
+@model fitnessapp.Namespace.AverageRatingListModel
+@{
+    ViewData["Title"] = "Average Rating List";
+
+    ViewBag.Ratings = string.Join(", ", Model.Ratings);
+
+}
+<link href="~/css/jquery.rateyo.min.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        @{
+            @foreach (var item in Model.tblChallengeList)
+            {
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">@item.Title</h4>
+                            <h6 class="card-title">@item.Description</h6>
+                            <h6 class="card-title">@item.Category</h6>
+                            <h6 class="card-title">@item.EndDate</h6>
+                            <form method="post">
+                                <button type="submit" class="btn btn-primary" asp-page="RateChallenge" asp-route-id="@item.ChallengeId">Rate it!</button><br>
+                            </form>
+                        </div>
+                        <div class="rateYo"></div>
+                    </div>
+                </div>
+
+            }
+        }
+    </div>
+</div>
+
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/jquery.rateyo.min.js"></script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        $(function () {
+            var Ratings = [@ViewBag.Ratings],
+                stars = $('.rateYo');
+            for (var i = 0; i < stars.length; i++) {
+                $('.rateYo').eq(i).rateYo({
+                    rating: Ratings[i],
+                    readOnly: true
+                });
+            }
+        });
+    </script>
+}

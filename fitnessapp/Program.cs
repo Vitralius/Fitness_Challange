@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using fitnessapp.Data;
+using fitnessapp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,20 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("DefaultConnection"));
 var connectionString2 = builder.Configuration.GetConnectionString("MyConnection") ?? throw new InvalidOperationException("Connection string 'MyConnection' not found.");
-builder.Services.AddDbContext<UserChallangeDbContext>(options =>options.UseSqlServer(connectionString2));
+builder.Services.AddDbContext<UserChallengeDatabaseContext>(options =>options.UseSqlServer(connectionString2));
+var connectionString3 = builder.Configuration.GetConnectionString("SecondConnection") ?? throw new InvalidOperationException("Connection string 'SecondConnection' not found.");
+builder.Services.AddDbContext<ChallengeDatabaseContext>(options =>options.UseSqlServer(connectionString3));
 
+//Seasion handler
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".UserInformation.Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(30);;
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -38,6 +51,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapRazorPages();
 

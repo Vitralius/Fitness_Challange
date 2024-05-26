@@ -1,0 +1,81 @@
+﻿@page
+@model fitnessapp.Namespace.MyChallengeListModel
+@{
+    ViewData["Title"] = "Challange List";
+    var today = DateTime.Today;
+    var lastday = today.AddDays(7);
+    var todayString = today.ToString("yyyy-MM-dd");
+    var lastdayString = lastday.ToString("yyyy-MM-dd");
+}
+
+<h1>My Challange List</h1>
+
+ <form method="post">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="newChallenge.Title" class="control-label"></label>
+    <input asp-for="newChallenge.Title" class="form-control" />
+    <span asp-validation-for="newChallenge.Title" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="newChallenge.Description" class="control-label"></label>
+    <input asp-for="newChallenge.Description" class="form-control" />
+    <span asp-validation-for="newChallenge.Description" class="text-danger"></span>
+    </div>
+<div class="form-group">
+    <label asp-for="newChallenge.EndDate" class="control-label"></label>
+<input class="form-control" asp-for="newChallenge.EndDate" type="date" min="@todayString" max="@lastdayString"/>
+</div>
+ <div class="form-group">
+    <label asp-for="newChallenge.Category" class="control-label"></label>
+    <select asp-for="newChallenge.Category" class="form-control" id="PizzaSize">
+        <option value="">-- Select Category --</option>
+        <option value="High">High priority</option>
+        <option value="Medium">Medium priority</option>
+        <option value="Low">Low priority</option>
+    </select>
+    <span asp-validation-for="newChallenge.Category" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <input type="submit" value="Create" class="btn btn-primary" />
+</div>
+</form> 
+ @section Scripts {
+<partial name="_ValidationScriptsPartial" />
+} 
+
+
+ <table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">End date</th>
+            @* <th scope="col">Publish</th> *@
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var challenge in Model.challengeList)
+    {
+        <tr>
+            <td>@challenge.Title</td>
+            <td>@challenge.Description</td>
+            <td>@challenge.Category</td>
+            <td>@challenge.EndDate</td>
+            @* <td>
+                <form method="post" asp-page-handler="Publish" asp-route-id="@challenge.ChallengeId">
+                    <button class="btn btn-primary"><i class="fa-solid fa-plus" title="Publish"></i></button>
+                </form>
+            </td> *@
+            <td>
+                <form method="post" asp-page-handler="Delete" asp-route-id="@challenge.ChallengeId">
+                    <button class="btn btn-danger"><i class="fa-solid fa-trash" title="Delete"></i></button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table> 
+

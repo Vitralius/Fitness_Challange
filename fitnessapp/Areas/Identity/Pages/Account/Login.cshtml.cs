@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
+using fitnessapp.Data;
 
 namespace fitnessapp.Areas.Identity.Pages.Account
 {
@@ -115,6 +117,8 @@ namespace fitnessapp.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    HttpContext.Session.SetString("userId", userId);
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

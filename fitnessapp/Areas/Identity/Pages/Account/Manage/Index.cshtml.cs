@@ -26,6 +26,7 @@ namespace fitnessapp.Areas.Identity.Pages.Account.Manage
         public BufferedSingleFileUploadDb FileUpload { get; set; } = new BufferedSingleFileUploadDb();
         [BindProperty]
         public string SelectedCity { get; set; } = string.Empty;
+        [BindProperty]
         public List<SelectListItem> Cities { get; set; } = new List<SelectListItem>();
         public byte[] Picture { get; set; } = default;
         public UserDetail ProfileDetail { get; set; } = default;
@@ -72,6 +73,10 @@ namespace fitnessapp.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [Display(Name = "User name")]
+            public string NewUserName { get; set; }
+            [Display(Name = "About me")]
+            public string Biography { get; set; }
         }
         public class BufferedSingleFileUploadDb
         {
@@ -83,6 +88,16 @@ namespace fitnessapp.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             var cities = await _context.Cities.ToListAsync();
+            foreach(var city in cities)
+            {
+                SelectListItem item = new () {
+                    Text = city.CityName,
+                    Value = city.CityName
+                };
+                Cities.Add(item);
+            }
+
+            var biography = _context.UserDetails.Where(p => p.UserId == user.Id).FirstOrDefault();
 
             Username = userName;
             ProfileDetail = _context.UserDetails.Where(p => p.UserId == user.Id).FirstOrDefault();
@@ -103,14 +118,17 @@ namespace fitnessapp.Areas.Identity.Pages.Account.Manage
                 {
                     Photo = Picture,
                     UserId = user.Id,
-                    City = " "
+                    City = " ",
+                    Bio = " "
                 };
                 _context.UserDetails.Add(ProfileDetail);
                 await _context.SaveChangesAsync();
             }
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                NewUserName = userName
+                
             };
         }
 
@@ -151,6 +169,17 @@ namespace fitnessapp.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            var userName = await _userManager.GetUserNameAsync(user);
+            if (Input.NewUserName != userName)
+            {
+                var setUserName = await _userManager.SetUserNameAsync(user, Input.NewUserName);
+                if (!setUserName.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set user name.";
+                    return RedirectToPage(); 
+                }
+            }
+
             await _signInManager.RefreshSignInAsync(user);
             ProfileDetail = _context.UserDetails.Where(p => p.UserId == user.Id).FirstOrDefault();
 
@@ -166,6 +195,10 @@ namespace fitnessapp.Areas.Identity.Pages.Account.Manage
                 if (SelectedCity != ProfileDetail.City)
                 {
                     ProfileDetail.City = SelectedCity;
+                }
+                if (ProfileDetail != null)
+                {
+                    ProfileDetail.Bio = Input.Biography;
                 }
             }
             await _context.SaveChangesAsync();

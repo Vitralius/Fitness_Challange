@@ -1,0 +1,44 @@
+@page
+@model fitnessapp.Namespace.FavoritesModel
+@{
+    ViewData["Title"] = "Favorites";
+}
+
+<h2>Favorites</h2>
+
+ <table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">End date</th>
+            <th scope="col">Canceled</th>
+            <th scope="col">GiveUp</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var challenge in Model.tblChallengeList)
+    {
+            <tr>
+                <td>@challenge.Title</td>
+                <td>@challenge.Description</td>
+                <td>@challenge.Category</td>
+                <td>@challenge.EndDate</td>
+                <td>@challenge.IsDeleted</td>
+                <td>
+                @if(challenge.IsDeleted==false)
+                {
+                    <form method="post" asp-page-handler="GiveUp" asp-route-id="@challenge.ParentId">
+                    <button class="btn btn-danger"><i class="fa-solid fa-trash" title="GiveUp"></i></button>
+                    </form>
+                }
+                else
+                {
+                    <text>Challenge Canceled</text>
+                }
+                </td>       
+            </tr>
+    }
+    </tbody>
+</table> 

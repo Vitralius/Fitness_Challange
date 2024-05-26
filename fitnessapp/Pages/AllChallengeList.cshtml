@@ -80,6 +80,7 @@
                 </a>
             </th>
             <th scope="col">Participate</th>
+            <th scope="col">Favorite</th>
         </tr>
     </thead>
     <tbody>
@@ -96,6 +97,12 @@
                 @if(challenge.IsDeleted == false)
                 {
                     <button class="btn btn-primary"><i class="fa-solid fa-plus" title="Participate"></i></button>
+                }
+                </form>
+                <form method="post" asp-page-handler="Favorite" asp-route-id="@challenge.ChallengeId">
+                @if(challenge.IsDeleted == false)
+                {
+                    <button class="btn btn-primary"><i class="fa-solid fa-plus" title="Favorite"></i></button>
                 }
                 </form>
             </td>            

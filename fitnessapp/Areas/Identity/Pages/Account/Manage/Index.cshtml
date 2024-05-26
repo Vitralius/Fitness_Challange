@@ -17,8 +17,8 @@
         <form id="profile-form" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
-                <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
-                <label asp-for="Username" class="form-label"></label>
+                <input asp-for="Input.NewUserName" class="form-control" placeholder="Please choose your username." />
+                <label asp-for="Input.NewUserName" class="form-label"></label>
             </div>
             <br>
             <div class="form-floating mb-3">
@@ -26,13 +26,18 @@
                 <label asp-for="Input.PhoneNumber" class="form-label"></label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-            <br>
             <div class="form-group">
                 <label for="city">City:</label>
+            
                 <select id="city" asp-for="SelectedCity" asp-items="Model.Cities" class="form-control"></select>
                 <span asp-validation-for="SelectedCity" class="text-danger"></span>
             </div>
             <br>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Biography" class="form-control" type="" placeholder="About me." />
+                <label asp-for="Input.Biography" class="form-label"></label>
+                <span asp-validation-for="Input.Biography" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="FileUpload.FormFile">Profile Picture</label>
                 <input asp-for="FileUpload.FormFile" type="file" class="form-control" />

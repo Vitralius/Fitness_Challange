@@ -46,16 +46,6 @@ namespace fitnessapp.Namespace
             .Where(tblChallenge => !challengeList
                 .Any(challenge => challenge.ChallengeId == tblChallenge.ParentId)).ToList();
 
-            // for(int i=0; i<challengeList.Count;i++)
-            // {
-            //     for(int j=0; j<tblChallengeList.Count; j++)
-            //     {
-            //         if(challengeList[i].ChallengeId == tblChallengeList[j].ParentId)
-            //         {
-            //             tblChallengeList.Remove(tblChallengeList[j]);
-            //         }
-            //     }
-            // }
 
             //Filtering and Sorting part
             TitleFilter = searchString1;
@@ -144,6 +134,27 @@ namespace fitnessapp.Namespace
              };
 
              UserChallengeDb.Participates.Add(newParticipate);
+             UserChallengeDb.SaveChanges();
+
+             return RedirectToAction("Get");
+         }
+
+         public IActionResult OnPostFavorite(int id)
+         {
+            var findChallenge = ChallengeDb.TblChallenges.FirstOrDefault(c => c.ChallengeId == id);
+             if (findChallenge == null)
+             {
+                 return Page();
+             }
+
+             var newFavorite = new Favorite
+             {
+                 ChallengeId = findChallenge.ParentId,
+                 IsDeleted = findChallenge.IsDeleted,
+                 UserId = HttpContext.Session.GetString("userId") ?? string.Empty,
+             };
+
+             UserChallengeDb.Favorites.Add(newFavorite);
              UserChallengeDb.SaveChanges();
 
              return RedirectToAction("Get");

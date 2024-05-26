@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using fitnessapp.Models;
 
-namespace fitnessapp.Data;
+namespace fitnessapp.Models;
 
 public partial class UserChallengeDatabaseContext : DbContext
 {
@@ -19,6 +18,8 @@ public partial class UserChallengeDatabaseContext : DbContext
     public virtual DbSet<Challenge> Challenges { get; set; }
 
     public virtual DbSet<City> Cities { get; set; }
+
+    public virtual DbSet<Favorite> Favorites { get; set; }
 
     public virtual DbSet<Participate> Participates { get; set; }
 
@@ -71,6 +72,19 @@ public partial class UserChallengeDatabaseContext : DbContext
                 .HasColumnName("cityName");
         });
 
+        modelBuilder.Entity<Favorite>(entity =>
+        {
+            entity.ToTable("favorite");
+
+            entity.Property(e => e.FavoriteId).HasColumnName("favoriteId");
+            entity.Property(e => e.ChallengeId).HasColumnName("challengeId");
+            entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
+            entity.Property(e => e.UserId)
+                .HasMaxLength(50)
+                .IsFixedLength()
+                .HasColumnName("userId");
+        });
+
         modelBuilder.Entity<Participate>(entity =>
         {
             entity.ToTable("participate");
@@ -90,6 +104,10 @@ public partial class UserChallengeDatabaseContext : DbContext
             entity.ToTable("userDetail");
 
             entity.Property(e => e.DetailId).HasColumnName("detailId");
+            entity.Property(e => e.Bio)
+                .HasMaxLength(450)
+                .IsUnicode(false)
+                .HasColumnName("bio");
             entity.Property(e => e.City)
                 .HasMaxLength(50)
                 .HasColumnName("city");

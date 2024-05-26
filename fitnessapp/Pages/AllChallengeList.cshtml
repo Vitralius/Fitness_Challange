@@ -99,13 +99,15 @@
                     <button class="btn btn-primary"><i class="fa-solid fa-plus" title="Participate"></i></button>
                 }
                 </form>
+            </td>
+            <td>
                 <form method="post" asp-page-handler="Favorite" asp-route-id="@challenge.ChallengeId">
                 @if(challenge.IsDeleted == false)
                 {
-                    <button class="btn btn-primary"><i class="fa-solid fa-plus" title="Favorite"></i></button>
+                    <button class="btn btn-primary"><i class="fa-solid fa-star" title="Favorite"></i></button>
                 }
                 </form>
-            </td>            
+            </td>          
         </tr>
     }
 

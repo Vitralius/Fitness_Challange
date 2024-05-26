@@ -1,7 +1,8 @@
 @page
-@model fitnessapp.Namespace.FavoritesModel
+@model FavoritesModel
 @{
     ViewData["Title"] = "Favorites";
+    ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
 <h2>Favorites</h2>
@@ -14,7 +15,7 @@
             <th scope="col">Category</th>
             <th scope="col">End date</th>
             <th scope="col">Canceled</th>
-            <th scope="col">GiveUp</th>
+            <th scope="col">Unfavorite</th>
         </tr>
     </thead>
     <tbody>
@@ -29,15 +30,15 @@
                 <td>
                 @if(challenge.IsDeleted==false)
                 {
-                    <form method="post" asp-page-handler="GiveUp" asp-route-id="@challenge.ParentId">
-                    <button class="btn btn-danger"><i class="fa-solid fa-trash" title="GiveUp"></i></button>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@challenge.ChallengeId">
+                    <button class="btn btn-danger"><i class="fa-solid fa-star" title="Delete"></i></button>
                     </form>
                 }
                 else
                 {
                     <text>Challenge Canceled</text>
                 }
-                </td>       
+                </td>
             </tr>
     }
     </tbody>

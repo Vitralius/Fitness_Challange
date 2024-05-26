@@ -149,7 +149,7 @@ namespace fitnessapp.Namespace
 
              var newFavorite = new Favorite
              {
-                 ChallengeId = findChallenge.ParentId,
+                 ChallengeId = findChallenge.ChallengeId,
                  IsDeleted = findChallenge.IsDeleted,
                  UserId = HttpContext.Session.GetString("userId") ?? string.Empty,
              };

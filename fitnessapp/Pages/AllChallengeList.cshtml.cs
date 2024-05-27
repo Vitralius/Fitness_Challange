@@ -70,13 +70,13 @@ namespace fitnessapp.Namespace
             {
                 sortingList = sortingList.Where(c => c.Category.Contains(searchString2));
             }
-            else if (searchString3)
-            {
-                sortingList = sortingList.Where(c => c.IsDeleted == searchString3);
-            }
             else if (!String.IsNullOrEmpty(searchString4))
             {
                 sortingList = sortingList.Where(c => c.EndDate == DateTime.Parse(searchString4));
+            }
+            else
+            {
+                sortingList = sortingList.Where(c => c.IsDeleted == searchString3);
             }
             switch (sortOrder)
             {

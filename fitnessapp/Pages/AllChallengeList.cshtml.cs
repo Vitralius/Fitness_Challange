@@ -78,7 +78,6 @@ namespace fitnessapp.Namespace
             {
                 sortingList = sortingList.Where(c => c.EndDate == DateTime.Parse(searchString4));
             }
-
             switch (sortOrder)
             {
                 case "Title":

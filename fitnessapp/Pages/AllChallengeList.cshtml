@@ -76,7 +76,7 @@
             </th>
             <th scope="col">
                 <a asp-page="./AllChallengeList" asp-route-sortOrder="@Model.IsDeletedSort">
-                @Html.DisplayNameFor(model => model.tblChallengeList[0].IsDeleted)
+                Status
                 </a>
             </th>
             <th scope="col">Participate</th>
@@ -91,7 +91,14 @@
             <td>@challenge.Description</td>
             <td>@challenge.Category</td>
             <td>@challenge.EndDate</td>
-            <td>@challenge.IsDeleted</td>
+            @if(@challenge.IsDeleted == true)
+            {
+                <td>Canceled</td>
+            }
+            else
+            {
+                <td>On Going</td>
+            }
             <td>
                 <form method="post" asp-page-handler="Participate" asp-route-id="@challenge.ChallengeId">
                 @if(challenge.IsDeleted == false)

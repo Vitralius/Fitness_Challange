@@ -15,8 +15,8 @@ namespace fitnessapp.Areas.Identity.Pages.Account.Manage
         private readonly UserChallengeDatabaseContext UserChallengeDb;
         private readonly ChallengeDatabaseContext ChallengeDb;
         private readonly UserManager<IdentityUser> UserManager;
-        public List<TblChallenge> tblChallengeList { get; set; } = default!;
-        public List<Favorite> favoriteList { get; set; } = default!;
+        public List<TblChallenge> tblChallengeList { get; set; } = new List<TblChallenge>();
+        public List<Favorite> favoriteList { get; set; } = new List<Favorite>();
         public FavoritesModel (UserManager<IdentityUser> _userManager, UserChallengeDatabaseContext UserDb, ChallengeDatabaseContext ChDb)
         {
             UserManager = _userManager;
@@ -42,24 +42,28 @@ namespace fitnessapp.Areas.Identity.Pages.Account.Manage
             await LoadAsync(user);
             return Page();
         }
-        public async Task<IActionResult> OnPostDelete(int id)
+        public async Task<IActionResult> OnPost(int id)
         {
             var user = await UserManager.GetUserAsync(User);
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{UserManager.GetUserId(User)}'.");
             }
-            if (UserChallengeDb.Challenges != null)
+
+            if (!ModelState.IsValid)
             {
-                var find = await UserChallengeDb.Favorites.FirstOrDefaultAsync(c => c.ChallengeId == id);
-                if (find != null)
-                {
-                    find.IsDeleted = true;
-                    UserChallengeDb.SaveChanges();
-                }
+                await LoadAsync(user);
+                return Page();
             }
-         await LoadAsync(user);
-         return Page();   
+            var find = await UserChallengeDb.Favorites.FirstOrDefaultAsync(c => c.ChallengeId == id);
+            if (find != null)
+            {
+                find.IsDeleted = true;
+            }   
+            
+            await UserChallengeDb.SaveChangesAsync();
+
+            return RedirectToPage();
         }
     }
 }

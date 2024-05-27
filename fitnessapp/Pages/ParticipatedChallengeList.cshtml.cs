@@ -33,7 +33,7 @@ namespace fitnessapp.Namespace
 
             tblChallengeList = tblChallengeList
                     .Where(tblChallenge => participateList
-                    .Any(challenge => challenge.ChallengeId == tblChallenge.ParentId)).ToList();
+                    .Any(challenge => challenge.ChallengeId == tblChallenge.ChallengeId)).ToList();
         }
 
             public IActionResult OnPostGiveUp(int id)

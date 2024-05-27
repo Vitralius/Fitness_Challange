@@ -30,7 +30,7 @@
                 <td>
                 @if(challenge.IsDeleted==false)
                 {
-                    <form method="post" asp-page-handler="Delete" asp-route-id="@challenge.ChallengeId">
+                    <form method="post" asp-route-id="@challenge.ChallengeId">
                     <button class="btn btn-danger"><i class="fa-solid fa-star" title="Delete"></i></button>
                     </form>
                 }

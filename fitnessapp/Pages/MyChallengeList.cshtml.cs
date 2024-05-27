@@ -60,43 +60,20 @@ namespace fitnessapp.Namespace
             public IActionResult OnPostDelete(int id)
         {
             var userChallenge = UserChallengeDb.Challenges.FirstOrDefault(c => c.ChallengeId == id);
-            //var challenge = ChallengeDb.TblChallenges.FirstOrDefault(c => c.ParentId == id);
+            var challenge = ChallengeDb.TblChallenges.FirstOrDefault(c => c.ParentId == id);
             
-            if (userChallenge == null)
+            if (userChallenge == null || challenge == null)
             {
                 return NotFound();
             }
             userChallenge.IsDeleted = true;
-            //challenge.IsDeleted = true;
+            challenge.IsDeleted = true;
             UserChallengeDb.SaveChanges();
-            //ChallengeDb.SaveChanges();
+            ChallengeDb.SaveChanges();
 
          return RedirectToPage();
         }
-        
-        // This part is not working as needed.
-        //  public IActionResult OnPostPublish(int id)
-        //  {
-        //     var findChallenge = challengeList.FirstOrDefault(c => c.ChallengeId == id);
-        //      if (findChallenge == null)
-        //      {
-        //          return NotFound();
-        //      }
-        //     var newTblChallenge = new TblChallenge
-        //     {
-        //         ParentId = findChallenge.ChallengeId,
-        //         Title = findChallenge.Title,
-        //         Description = findChallenge.Description,
-        //         Category = findChallenge.Category,
-        //         IsDeleted = findChallenge.IsDeleted,
-        //         EndDate = findChallenge.EndDate
-        //     };
-
-        //      ChallengeDb.TblChallenges.Add(newTblChallenge);
-        //      ChallengeDb.SaveChanges();
-
-        //      return RedirectToPage();
-        //  }        
+               
 
 
     }

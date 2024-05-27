@@ -52,7 +52,6 @@
             <th scope="col">Description</th>
             <th scope="col">Category</th>
             <th scope="col">End date</th>
-            @* <th scope="col">Publish</th> *@
             <th scope="col">Delete</th>
         </tr>
     </thead>
@@ -64,11 +63,6 @@
             <td>@challenge.Description</td>
             <td>@challenge.Category</td>
             <td>@challenge.EndDate</td>
-            @* <td>
-                <form method="post" asp-page-handler="Publish" asp-route-id="@challenge.ChallengeId">
-                    <button class="btn btn-primary"><i class="fa-solid fa-plus" title="Publish"></i></button>
-                </form>
-            </td> *@
             <td>
                 <form method="post" asp-page-handler="Delete" asp-route-id="@challenge.ChallengeId">
                     <button class="btn btn-danger"><i class="fa-solid fa-trash" title="Delete"></i></button>
